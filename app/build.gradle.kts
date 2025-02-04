@@ -6,7 +6,12 @@ plugins {
 android {
     namespace = "com.app.dementiaguard"
     compileSdk = 35
-
+    packaging{
+        resources {
+            excludes.add("META-INF/androidx.cardview_cardview.version")
+        }
+        // Add more exclude statements if needed
+    }
     defaultConfig {
         applicationId = "com.app.dementiaguard"
         minSdk = 24
@@ -42,6 +47,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.cardview.v7)
+    implementation (libs.converter.gson)
+    implementation (libs.retrofit)
+    implementation (libs.logging.interceptor)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

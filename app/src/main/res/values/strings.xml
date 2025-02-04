@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">Dementia Guard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- New arrays for provinces and districts -->
+    <string-array name="provinces">
+        <item>western</item>
+        <item>central</item>
+        <item>southern</item>
+        <item>northern</item>
+        <item>eastern</item>
+        <item>northWestern</item>
+    </string-array>
+
+    <string-array name="districts">
+        <item>colombo</item>
+        <item>gampaha</item>
+        <item>kalutara</item>
+        <item>kandy</item>
+        <item>matale</item>
+        <item>nuwaraEliya</item>
+        <item>galle</item>
+        <item>matara</item>
+        <item>hambantota</item>
+        <item>anuradhapura</item>
+        <item>polonnaruwa</item>
+        <item>batticaloa</item>
+        <item>ampara</item>
+        <item>trincomalee</item>
+        <item>jaffna</item>
+        <item>kilinochchi</item>
+        <item>mannar</item>
+        <item>vavuniya</item>
+        <item>mullaitivu</item>
+        <item>kurunegala</item>
+        <item>rathnapura</item>
+        <item>kegalle</item>
+        <item>badulla</item>
+        <item>hanguranketha</item>
+        <item>monaragala</item>
+    </string-array>
 </resources>
