@@ -23,4 +23,10 @@
 
     <color name="cardBorder">#80EFEFEF</color>
     <color name="cardBorderText">#7A7A7A</color>
+
+    <!--    card colors by figma-->
+    <color name="yellowish">#fff1be</color>
+    <color name="pinkish">#ffe9e8</color>
+    <color name="blueish">#d4f8ff</color>
+
 </resources>
