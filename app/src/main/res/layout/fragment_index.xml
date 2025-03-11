@@ -101,7 +101,7 @@
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
@@ -138,14 +138,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Recent Activities"
                     android:textAlignment="center"
                     android:textColor="@color/secondary"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvIndexCActivities" />
+                    app:layout_constraintTop_toBottomOf="@+id/cvWearSos" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -163,21 +163,21 @@
                     app:layout_constraintTop_toTopOf="@+id/textView21" />
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvIndexWear"
+                    android:id="@+id/cvWearMonitorHealth"
                     android:layout_width="0dp"
                     android:layout_height="260dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:clickable="true"
                     app:cardBackgroundColor="@color/blueish"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/cvIndexCActivities"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvWearSos"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="1.5"
-                    app:layout_constraintStart_toEndOf="@+id/cvIndexCActivities"
-                    app:layout_constraintTop_toTopOf="@+id/cvIndexCActivities"
+                    app:layout_constraintStart_toEndOf="@+id/cvWearSos"
+                    app:layout_constraintTop_toTopOf="@+id/cvWearSos"
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -204,7 +204,7 @@
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Connect\nDevice"
                             android:textAlignment="center"
-                            android:textColor="@color/secondary"
+                            android:textColor="@color/bluish_text"
                             android:textSize="24sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -214,20 +214,20 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvIndexCActivities"
+                    android:id="@+id/cvWearSos"
                     android:layout_width="0dp"
                     android:layout_height="260dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:clickable="true"
                     app:cardBackgroundColor="@color/pinkish"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:layout_constraintEnd_toStartOf="@+id/cvIndexWear"
+                    app:layout_constraintEnd_toStartOf="@+id/cvWearMonitorHealth"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvIndexGemaAssist"
+                    app:layout_constraintTop_toBottomOf="@+id/cvWearConfDevice"
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -254,8 +254,8 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Cognitive\nActivities"
-                            android:textAlignment="center"
-                            android:textColor="@color/secondary"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/redish_text"
                             android:textSize="24sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -277,7 +277,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvIndexGemaAssist"
+                    android:id="@+id/cvWearConfDevice"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -314,20 +314,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Gema Assist"
                             android:textAlignment="center"
-                            android:textColor="@color/secondary"
+                            android:textColor="@color/yellowish_text"
                             android:textSize="24sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/textView19"
-                            android:layout_width="140dp"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
+                            android:alpha="0.6"
                             android:fontFamily="@font/poppins"
                             android:text="Our All New Friendly Therapy Assistant  Got you Covered"
                             android:textAlignment="textStart"

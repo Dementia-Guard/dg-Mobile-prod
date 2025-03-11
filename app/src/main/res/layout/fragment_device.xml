@@ -11,13 +11,487 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Device"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Wearable"
+            android:textColor="@color/secondary"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvNotiFb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="false"
+            app:cardBackgroundColor="@color/cardBorder"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:strokeWidth="0.8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:alpha="0.5"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/baseline_watch_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/roundedImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearAct"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/red_card"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1.4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvWearTrack"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="16dp"
+                            android:alpha="0.5"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Monitor past  user activities "
+                            android:textAlignment="textStart"
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="160dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/wear_recent_act"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/wear_recent_act" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:lineSpacingExtra="-5sp"
+                            android:text="Recent\nActivities"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/redish_text"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toTopOf="@+id/textView20"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearTravel"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/greyish"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvWearTrack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/cvWearTrack"
+                    app:layout_constraintTop_toTopOf="@+id/cvWearTrack"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:alpha="0.5"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="See More"
+                            android:textAlignment="center"
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:lineSpacingExtra="-5sp"
+                            android:text="Travel\nMode"
+                            android:textAlignment="center"
+                            android:textColor="@color/secondary"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toTopOf="@+id/textView20"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearTrack"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/green_card"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cvWearTravel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1.4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvWearSos"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="140dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="-10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/wear_gmaps"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView20"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/wear_gmaps" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:lineSpacingExtra="-5sp"
+                            android:text="Track\nUser"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/greenish_text"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="-10dp"
+                            android:alpha="0.6"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="See Now"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearMonitorHealth"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/yellow_card"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvWearSos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1.4"
+                    app:layout_constraintStart_toEndOf="@+id/cvWearSos"
+                    app:layout_constraintTop_toTopOf="@+id/cvWearSos"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="-10dp"
+                            android:alpha="0.5"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="See More"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="160dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="-50dp"
+                            android:layout_marginBottom="-50dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/wear_heart"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/wear_heart" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:lineSpacingExtra="-5sp"
+                            android:text="Monitor\nHealth"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/yellowish_text"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearSos"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/dark_red_card"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cvWearMonitorHealth"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvWearConfDevice"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="140dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="-10dp"
+                            android:layout_marginBottom="-20dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/wear_sos_bell"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView20"
+                            app:srcCompat="@drawable/wear_sos_bell" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="SOS"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="-10dp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Play Now"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvWearConfDevice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    app:cardBackgroundColor="@color/blueish"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/shimmerMain">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="230dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dg_home_wear"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/dg_home_wear" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:lineSpacingExtra="-5sp"
+                            android:text="Connect\nDevice"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/bluish_text"
+                            android:textSize="28sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:alpha="0.6"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Configure Device To Experience Ultimate Features"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/secondary"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:alpha="0.6"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Connect Now"
+                            android:textAlignment="center"
+                            android:textColor="@color/secondary"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

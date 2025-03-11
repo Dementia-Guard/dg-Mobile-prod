@@ -25,8 +25,20 @@
     <color name="cardBorderText">#7A7A7A</color>
 
     <!--    card colors by figma-->
+    <color name="dark_red_card">#FF6C65</color>
+    <color name="yellow_card">#FFF1BE</color>
+    <color name="green_card">#DAFFCD</color>
+    <color name="red_card">#FFE9E8</color>
+
     <color name="yellowish">#fff1be</color>
     <color name="pinkish">#ffe9e8</color>
     <color name="blueish">#d4f8ff</color>
+    <color name="redish">#FFE9E8</color>
+    <color name="greenish">#DAFFCD</color>
+    <color name="greyish">#F6F6F6</color>
 
+    <color name="bluish_text">#00B0D4</color>
+    <color name="yellowish_text">#FCB500</color>
+    <color name="greenish_text">#00A000</color>
+    <color name="redish_text">#DB3030</color>
 </resources>
