@@ -35,10 +35,14 @@
     <color name="blueish">#d4f8ff</color>
     <color name="redish">#FFE9E8</color>
     <color name="greenish">#DAFFCD</color>
+    <color name="green_bluish">#385A64</color>
     <color name="greyish">#F6F6F6</color>
+    <color name="purplish">#FFE5D7FF</color>
 
     <color name="bluish_text">#00B0D4</color>
     <color name="yellowish_text">#FCB500</color>
     <color name="greenish_text">#00A000</color>
     <color name="redish_text">#DB3030</color>
+    <color name="purplish_text">#6A1AFF</color>
+
 </resources>
