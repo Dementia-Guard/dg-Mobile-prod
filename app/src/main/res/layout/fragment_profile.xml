@@ -211,7 +211,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/poppins"
-                            android:text="Learn More"
+                            android:text="Learn More?"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
