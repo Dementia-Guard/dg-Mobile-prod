@@ -477,7 +477,7 @@
                             android:layout_marginStart="12dp"
                             android:fontFamily="@font/poppins_semibold"
                             android:includeFontPadding="false"
-                            android:text="Hasindhu"
+                            android:text="Hasindu"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView3"
