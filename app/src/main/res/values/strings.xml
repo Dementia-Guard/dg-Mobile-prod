@@ -2,7 +2,6 @@
     <string name="app_name">Dementia Guard</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<!--    <string name="google_map_api">AIzaSyCONzapqHJ6TD8nqE4_AaMx7__bbCrAvZY</string>-->
 
     <!-- New arrays for provinces and districts -->
     <string-array name="provinces">
