@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"/>
+    <item
+        android:title="Assistant"
+        android:id="@+id/assistant"
+        android:icon="@drawable/baseline_assistant_24"/>
+
+    <item
+        android:title="Device"
+        android:id="@+id/device"
+        android:icon="@drawable/baseline_watch_24"/>
+
+    <item
+        android:title="Activities"
+        android:id="@+id/activities"
+        android:icon="@drawable/baseline_menu_book_24"/>
+
+    <item
+        android:title="Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/baseline_account_circle_24"/>
+</menu>
