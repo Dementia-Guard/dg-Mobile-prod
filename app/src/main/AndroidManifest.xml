@@ -23,6 +23,9 @@
         <!-- <activity -->
         <!-- android:name=".Activity.Home" -->
         <!-- android:exported="false" /> -->
+<!--        <activity-->
+<!--            android:name=".Activity.Home"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Activity.Home"
             android:exported="true">

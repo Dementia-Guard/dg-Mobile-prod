@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtQuestionSessionHeader"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -30,12 +30,12 @@
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
             android:text="Welcome 👋"
-            app:layout_constraintBottom_toTopOf="@+id/txtQuestionSessionHeader"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <TextView
-            android:id="@+id/txtQuestionSessionHeader"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -44,9 +44,9 @@
             android:text="Hasindu"
             android:textColor="@color/secondary"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtQuestionSessionHeader"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestionSessionHeader" />
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvNotiFb"
@@ -67,7 +67,7 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageViewInfo"
+                    android:id="@+id/imageView3"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="8dp"
@@ -136,10 +136,10 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCDL" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                         <TextView
-                            android:id="@+id/txtTitleCDL"
+                            android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -161,7 +161,7 @@
                             app:layout_constraintBottom_toBottomOf="@+id/textView19"
                             app:layout_constraintEnd_toStartOf="@+id/textView19"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/txtTitleCDL" />
+                            app:layout_constraintTop_toTopOf="@+id/textView18" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -199,10 +199,10 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCDL" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                         <TextView
-                            android:id="@+id/txtTitleCDL"
+                            android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -223,8 +223,8 @@
                             android:src="@drawable/home_monitr_patient"
                             app:layout_constraintBottom_toBottomOf="@+id/textView19"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/txtTitleCDL"
-                            app:layout_constraintTop_toTopOf="@+id/txtTitleCDL" />
+                            app:layout_constraintStart_toEndOf="@+id/textView18"
+                            app:layout_constraintTop_toTopOf="@+id/textView18" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -289,11 +289,11 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCDL"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18"
                             app:srcCompat="@drawable/dg_home_wear" />
 
                         <TextView
-                            android:id="@+id/txtTitleCDL"
+                            android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -344,7 +344,7 @@
                             app:srcCompat="@drawable/cga_home_banner" />
 
                         <TextView
-                            android:id="@+id/txtTitleCDL"
+                            android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -369,7 +369,7 @@
                             android:textColor="@color/secondary"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCDL" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -408,7 +408,7 @@
                             app:srcCompat="@drawable/gema_logo" />
 
                         <TextView
-                            android:id="@+id/txtTitleCDL"
+                            android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -433,7 +433,7 @@
                             android:textColor="@color/secondary"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCDL" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                         <TextView
                             android:id="@+id/textView20"
