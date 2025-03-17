@@ -30,14 +30,6 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
-//        ViewCompat.setOnApplyWindowInsetsListener(
-//            findViewById(R.id.main)
-//        ) { v: View, insets: WindowInsetsCompat ->
-//            val systemBars =
-//                insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
         ViewCompat.setOnApplyWindowInsetsListener(
             findViewById(R.id.main)
         ) { v: View, insets: WindowInsetsCompat ->
@@ -46,8 +38,6 @@ class Home : AppCompatActivity() {
             insets
         }
         StatusBarUtil.setStatusBarAppearance(this, true)
-
-        //        Toast.makeText(this,apiKey,Toast.LENGTH_LONG).show();
         replaceFrag(IndexFragment())
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
