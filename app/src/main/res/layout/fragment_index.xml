@@ -414,7 +414,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Gema Assist"
+                            android:text="Voice Assistant"
                             android:textAlignment="center"
                             android:textColor="@color/yellowish_text"
                             android:textSize="24sp"
