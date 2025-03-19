@@ -53,7 +53,7 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.retrofit)
     implementation (libs.logging.interceptor)
-
+    implementation(libs.lottie)
 
     implementation(libs.firebase.database)
     implementation(libs.google.maps.utils)
