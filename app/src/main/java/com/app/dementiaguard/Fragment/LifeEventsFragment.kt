@@ -153,7 +153,7 @@ class LifeEventsFragment : Fragment() {
                 btnSubmit.isEnabled = true
                 
                 if (response.isSuccessful) {
-                    val eventId = response.body()?.event_id ?: 0
+                    val eventId = response.body()?.event_id ?: "Unknown ID"
                     val message = response.body()?.message ?: "Life event saved successfully!"
                     Toast.makeText(context, "$message (ID: $eventId)", Toast.LENGTH_SHORT).show()
                     

@@ -389,7 +389,7 @@ class ImagesFragment : Fragment() {
                     
                     Toast.makeText(
                         context,
-                        "Image uploaded successfully with ID: ${createResponse.image_id}",
+                        "Image uploaded successfully",
                         Toast.LENGTH_SHORT
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
@@ -413,7 +413,7 @@ class ImagesFragment : Fragment() {
         })
     }
     
-    private fun saveImageData(imageId: Int) {
+    private fun saveImageData(imageId: String) {
         val sharedPreferences = activity?.getSharedPreferences("ImageStories", 0)
         val editor = sharedPreferences?.edit()
         
@@ -432,7 +432,7 @@ class ImagesFragment : Fragment() {
         editor?.putString("imageWhen_$newImageCount", etDate.text.toString())
         editor?.putString("imageWhere_$newImageCount", etWhere.text.toString())
         editor?.putString("imageUri_$newImageCount", selectedImageUri.toString())
-        editor?.putInt("imageId_$newImageCount", imageId)
+        editor?.putString("imageId_$newImageCount", imageId)
         editor?.putInt("imageCount", newImageCount)
         
         editor?.apply()
