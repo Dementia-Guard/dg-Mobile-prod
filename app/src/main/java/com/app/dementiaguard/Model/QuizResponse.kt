@@ -1,12 +1,12 @@
 package com.app.dementiaguard.Model
 
 data class QuizResponse(
-    val question: String,
+    val question: String?,
     val answer: Any?,
     val hint: String?,
     val quiz_done: Boolean,
     val image_base64: String?,
-    val is_correct:Boolean?
+    val similarity_score: Float?
 ) {
     fun getAnswerAsString(): String {
         return when (answer) {

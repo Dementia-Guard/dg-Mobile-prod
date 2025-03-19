@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Handler
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -16,16 +15,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.dementiaguard.R
 import com.app.dementiaguard.Adapter.ChatMessageAdapter
 import com.app.dementiaguard.Api.ChatApiService
 import com.app.dementiaguard.Api.RetrofitClient
@@ -35,6 +30,7 @@ import com.app.dementiaguard.Model.ChatRequest
 import com.app.dementiaguard.Model.ChatResponse
 import com.app.dementiaguard.Model.QuizRequest
 import com.app.dementiaguard.Model.QuizResponse
+import com.app.dementiaguard.R
 import com.google.android.material.button.MaterialButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,8 +38,10 @@ import retrofit2.Response
 import java.util.Locale
 import java.util.Timer
 import java.util.UUID
-import java.util.TimerTask
 import kotlin.concurrent.timerTask
+import android.os.Handler
+import android.os.Looper
+import org.json.JSONObject
 
 class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     
@@ -65,6 +63,9 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     private var currentQuizAnswer: String? = null
     private var currentQuizHint: String? = null
     private var isHintDisplayed = false
+
+    private var totalScore = 0f  // Track cumulative score
+    private var totalQuestions = 0  // Track number of questions answered
     
     private lateinit var talkingAnimationContainer: FrameLayout
     private lateinit var talkingAnimation: View
@@ -179,6 +180,8 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     
     private fun startChatSession() {
         btnSpeak.isEnabled = false
+        totalScore = 0f  // Reset at session start
+        totalQuestions = 0  // Reset at session start
         
         val startChatCall = chatApiService.startChat(1)
         currentApiCall = startChatCall
@@ -293,9 +296,11 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
         currentQuizHint = quizResponse.hint
         isHintDisplayed = false
         
-        val messageToDisplay = quizResponse.question ?: ""  
-        addAssistantMessage(messageToDisplay)
-        speakText(messageToDisplay)
+        val messageToDisplay = quizResponse.question ?: ""
+        if (messageToDisplay.isNotEmpty()) {
+            addAssistantMessage(messageToDisplay)
+            speakText(messageToDisplay)
+        }
         
         if (quizResponse.image_base64 != null) {
             try {
@@ -311,6 +316,14 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 Toast.makeText(context, "Error displaying image: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+
+        if (quizResponse.quiz_done) {
+            totalScore = 0f
+            totalQuestions = 0
+            isQuizDone = true
+            currentQuizAnswer = null
+            currentQuizHint = null
+        }
     }
     
     private fun handleQuizAnswer(userAnswer: String) {
@@ -321,7 +334,8 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     
     private fun submitQuizAnswer(answer: String) {
         if (currentSessionId == null) return
-        
+
+        println("Sending quiz request: session_id=$currentSessionId, answer='$answer'")
         val quizRequest = QuizRequest(answer = answer)
         val quizCall = chatApiService.submitQuizAnswer(currentSessionId!!, quizRequest)
         currentApiCall = quizCall
@@ -329,36 +343,61 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
         quizCall.enqueue(object : Callback<QuizResponse> {
             override fun onResponse(call: Call<QuizResponse>, response: Response<QuizResponse>) {
                 if (!isAdded) return
-                
-                if (response.isSuccessful && response.body() != null) {
-                    val quizResponse = response.body()!!
 
-                    if (quizResponse.is_correct == false) {
-                        if (!isHintDisplayed && currentQuizHint != null) {
-                            isHintDisplayed = true
-                            val hintMessage = "Here is a Hint, $currentQuizHint"
-                            addAssistantMessage(hintMessage)
-                            speakText(hintMessage)
-                        } else {
-                            val message = "Correct answer is $currentQuizAnswer"
-                            addAssistantMessage(message)
-                            speakText(message)
-                            Timer().schedule(timerTask {
-                                submitQuizAnswer(currentQuizAnswer!!)
-                            }, 4000)
-                        }
+                println("Raw response: ${response.raw()}")
+                if (!response.isSuccessful) {
 
-                    } else {
-                        processQuizResponse(quizResponse)
+                    val errorBody = response.errorBody()?.use { it.string() } ?: "Unknown error"
+                    val errorMessage = try {
+                        JSONObject(errorBody).getString("message")
+                    } catch (e: Exception) {
+                        "Error: ${response.code()} - $errorBody"
                     }
-                } else {
-                    println("Error: ${response.code()} ${response.errorBody().toString()} ${response.body()}")
-                    Toast.makeText(context, "Error: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    println("Error: ${response.code()} - $errorBody")
+                    addAssistantMessage(errorMessage)  // Display error to user
+                    speakText(errorMessage)
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     btnSpeak.isEnabled = true
-                    isQuizDone = true
-                    currentQuizAnswer = null
-                    currentQuizHint = null
+                    return
                 }
+
+                val quizResponse = response.body()
+                if (quizResponse == null) {
+                    val errorMessage = "Error: Failed to parse quiz response"
+                    println(errorMessage)
+                    addAssistantMessage(errorMessage)
+                    speakText(errorMessage)
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    btnSpeak.isEnabled = true
+                    return
+                }
+
+                totalQuestions++
+                quizResponse.similarity_score?.let { totalScore += it }
+
+                val feedback = if (quizResponse.similarity_score != null && quizResponse.similarity_score < 0.7) {
+                    if (!isHintDisplayed && quizResponse.hint != null) {
+                        isHintDisplayed = true
+                        "Here's a hint: ${quizResponse.hint}"
+                    } else {
+                        "Not quite right. The answer was '${quizResponse.getAnswerAsString()}'. Let's move on."
+                    }
+
+                } else {
+                    if (quizResponse.similarity_score != null) {
+                        "Good answer! Similarity: ${String.format("%.2f", quizResponse.similarity_score * 100)}%"
+                    } else "Correct!"
+                }
+                addAssistantMessage(feedback)
+                speakText(feedback)
+
+                // Process the next question immediately if present
+                if (quizResponse.question != null && !quizResponse.quiz_done) {
+                    processQuizResponse(quizResponse)
+                } else if (quizResponse.quiz_done) {
+                    processQuizResponse(quizResponse)  // Handle quiz completion
+                }
+
             }
             
             override fun onFailure(call: Call<QuizResponse>, t: Throwable) {
@@ -366,11 +405,11 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 
                 if (!call.isCanceled) {
                     println("Network error: ${t.message}")
-                    Toast.makeText(context, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    val errorMessage = "Network error: ${t.message}"
+                    addAssistantMessage(errorMessage)
+                    speakText(errorMessage)
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     btnSpeak.isEnabled = true
-                    isQuizDone = true
-                    currentQuizAnswer = null
-                    currentQuizHint = null
                 }
             }
         })
