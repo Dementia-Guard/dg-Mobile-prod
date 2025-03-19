@@ -339,7 +339,7 @@
                             android:fontFamily="@font/poppins_semibold"
                             android:includeFontPadding="false"
                             android:lineSpacingExtra="-5sp"
-                            android:text="Personal\nPreferences"
+                            android:text="Personal\nStories"
                             android:textAlignment="textEnd"
                             android:textColor="@color/bluish_text"
                             android:textSize="28sp"

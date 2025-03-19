@@ -22,6 +22,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import com.app.dementiaguard.R
 import com.app.dementiaguard.Utils.FormCompletionManager
@@ -36,6 +37,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -336,13 +338,6 @@ class ImagesFragment : Fragment() {
         if (TextUtils.isEmpty(etDescription.text)) {
             etDescription.error = "Please enter description"
             isValid = false
-        }
-        
-        for ((objectName, editText) in objectEditTexts) {
-            if (TextUtils.isEmpty(editText.text)) {
-                editText.error = "Please enter details about $objectName"
-                isValid = false
-            }
         }
         
         if (TextUtils.isEmpty(etDate.text)) {

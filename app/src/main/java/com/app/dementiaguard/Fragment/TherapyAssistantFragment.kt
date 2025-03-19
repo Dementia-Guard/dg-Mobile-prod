@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -15,9 +16,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +40,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.Locale
+import java.util.Timer
 import java.util.UUID
+import java.util.TimerTask
+import kotlin.concurrent.timerTask
 
 class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     
@@ -146,7 +153,6 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
             }
             
             override fun onError(utteranceId: String?) {
-                // Error occurred
                 activity?.runOnUiThread {
                     talkingAnimationContainer.visibility = View.GONE
                     btnSpeak.visibility = View.VISIBLE
@@ -251,7 +257,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     private fun startQuiz(userMessage: String) {
         if (currentSessionId == null) return
         var message = userMessage
-        if(userMessage == "yes")
+        if(userMessage.equals("yes", ignoreCase = true))
             message = "start quiz"
         val quizRequest = QuizRequest(answer = message)
         val quizCall = chatApiService.submitQuizAnswer(currentSessionId!!, quizRequest)
@@ -310,18 +316,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     private fun handleQuizAnswer(userAnswer: String) {
         if (currentQuizAnswer == null) return
         
-        if (userAnswer.equals(currentQuizAnswer, ignoreCase = true)) {
-            submitQuizAnswer(userAnswer)
-        } else {
-            if (!isHintDisplayed && currentQuizHint != null) {
-                isHintDisplayed = true
-                val hintMessage = "Here is a Hint, $currentQuizHint"
-                addAssistantMessage(hintMessage)
-                speakText(hintMessage)
-            } else {
-                addUserMessage(currentQuizAnswer!!)
-            }
-        }
+        submitQuizAnswer(userAnswer)
     }
     
     private fun submitQuizAnswer(answer: String) {
@@ -337,7 +332,25 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 
                 if (response.isSuccessful && response.body() != null) {
                     val quizResponse = response.body()!!
-                    processQuizResponse(quizResponse)
+
+                    if (quizResponse.is_correct == false) {
+                        if (!isHintDisplayed && currentQuizHint != null) {
+                            isHintDisplayed = true
+                            val hintMessage = "Here is a Hint, $currentQuizHint"
+                            addAssistantMessage(hintMessage)
+                            speakText(hintMessage)
+                        } else {
+                            val message = "Correct answer is $currentQuizAnswer"
+                            addAssistantMessage(message)
+                            speakText(message)
+                            Timer().schedule(timerTask {
+                                submitQuizAnswer(currentQuizAnswer!!)
+                            }, 4000)
+                        }
+
+                    } else {
+                        processQuizResponse(quizResponse)
+                    }
                 } else {
                     println("Error: ${response.code()} ${response.errorBody().toString()} ${response.body()}")
                     Toast.makeText(context, "Error: ${response.code()}", Toast.LENGTH_SHORT).show()

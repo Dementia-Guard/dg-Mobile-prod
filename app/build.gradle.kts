@@ -51,10 +51,9 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.retrofit)
     implementation (libs.logging.interceptor)
-    implementation(libs.androidx.legacy.support.v4)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.fragment.ktx)
+
+    // GIF animation library
+    implementation(libs.android.gif.drawable)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

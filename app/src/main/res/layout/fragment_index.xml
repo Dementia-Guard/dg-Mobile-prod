@@ -41,7 +41,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/poppins_bold"
             android:includeFontPadding="false"
-            android:text="Hasindhu"
+            android:text="Hasindu"
             android:textColor="@color/secondary"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -390,6 +390,7 @@
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/gema_assist"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -414,7 +415,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:text="Voice Assistant"
+                            android:text="Gema Assist"
                             android:textAlignment="center"
                             android:textColor="@color/yellowish_text"
                             android:textSize="24sp"

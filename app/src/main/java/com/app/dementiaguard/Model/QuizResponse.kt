@@ -5,7 +5,8 @@ data class QuizResponse(
     val answer: Any?,
     val hint: String?,
     val quiz_done: Boolean,
-    val image_base64: String?
+    val image_base64: String?,
+    val is_correct:Boolean?
 ) {
     fun getAnswerAsString(): String {
         return when (answer) {
