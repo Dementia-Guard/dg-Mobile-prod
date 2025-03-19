@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtQuestionSessionHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -32,9 +32,9 @@
             app:cardBackgroundColor="@color/cardBorder"
             app:cardCornerRadius="50dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/txtQuestionSessionHeader"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/txtQuestionSessionHeader"
             app:strokeWidth="0.8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageViewInfo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="8dp"
@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestionSessionHeader">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -183,7 +183,7 @@
                             app:srcCompat="@drawable/current_progress" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/txtTitleCP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -211,7 +211,7 @@
                             android:textColor="@color/secondary"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtTitleCP" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -237,38 +237,36 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/textView20"
-                            android:layout_width="0dp"
+                            android:id="@+id/txtCurrrentDifficultyLevel"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:alpha="0.6"
-                            android:fontFamily="@font/poppins_medium"
-                            android:text="Cognitive Scoreboard tracks progress with timely insights"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="..."
                             android:textAlignment="center"
-                            android:textColor="@color/secondary"
-                            android:textSize="14sp"
+                            android:textColor="@color/yellowish_text"
+                            android:textSize="96sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                            app:layout_constraintStart_toEndOf="@+id/ca_cp_icon2"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/txtTitleCDL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
                             android:includeFontPadding="false"
                             android:lineSpacingExtra="-5sp"
-                            android:text="Score\nList"
-                            android:textAlignment="center"
+                            android:text="Current\nDifficulty\nLevel"
+                            android:textAlignment="viewStart"
                             android:textColor="@color/greenish_text"
                             android:textSize="28sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/textView20"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"

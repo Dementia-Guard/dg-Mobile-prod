@@ -51,6 +51,9 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.retrofit)
     implementation (libs.logging.interceptor)
+    implementation (libs.glide)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.lottie)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
