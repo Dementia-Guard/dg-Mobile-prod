@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -26,15 +31,29 @@
 <!--        <activity-->
 <!--            android:name=".Activity.Home"-->
 <!--            android:exported="false" />-->
+        <activity
+            android:name=".Activity.MonitorHealth"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Traveler"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Sos"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SoS"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TestActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}"/>
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".Activity.TrackUser"
-            android:exported="false" />
-        <!-- <activity -->
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Activity.Home" -->
         <!-- android:exported="false" /> -->
         <activity
