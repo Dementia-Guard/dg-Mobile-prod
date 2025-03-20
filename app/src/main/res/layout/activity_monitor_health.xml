@@ -24,7 +24,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvWearMonitorHealth"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:clickable="true"
@@ -50,29 +50,30 @@
                         android:layout_marginStart="16dp"
                         android:alpha="0.6"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Celcius"
+                        android:text="security"
                         android:textAlignment="textStart"
                         android:textColor="@color/secondary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvMHjustSos" />
 
-                    <ImageView
-                        android:id="@+id/imageView8"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginEnd="16dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/dg_home_wear"
+                        android:scaleType="fitStart"
                         app:layout_constraintBottom_toBottomOf="@+id/textView20"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView18"
-                        app:layout_constraintTop_toTopOf="@+id/textView18"
-                        app:srcCompat="@drawable/dg_home_wear" />
+                        app:layout_constraintStart_toEndOf="@+id/textView20"
+                        app:layout_constraintTop_toTopOf="@+id/tvMHjustSos"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/sos_alarm" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvMHjustSos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -87,16 +88,16 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvMHSos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="24dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:includeFontPadding="false"
-                        android:text="24"
+                        android:text="Active"
                         android:textColor="@color/bluish_text"
-                        android:textSize="42sp"
+                        android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -133,36 +134,37 @@
                         android:layout_marginStart="16dp"
                         android:alpha="0.6"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Celcius"
+                        android:text="oxygen"
                         android:textAlignment="textStart"
                         android:textColor="@color/secondary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvMHPulse" />
 
-                    <ImageView
-                        android:id="@+id/imageView8"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginEnd="16dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/dg_home_wear"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="@+id/textView20"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView18"
-                        app:layout_constraintTop_toTopOf="@+id/textView18"
-                        app:srcCompat="@drawable/dg_home_wear" />
+                        app:layout_constraintStart_toEndOf="@+id/textView20"
+                        app:layout_constraintTop_toTopOf="@+id/tvMHPulse"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/oxygen_animation" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvMHPulse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:includeFontPadding="false"
-                        android:text="Oxygen"
+                        android:text="02"
                         android:textAlignment="textStart"
                         android:textColor="@color/greenish_text"
                         android:textSize="24sp"
@@ -170,7 +172,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvMHO2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -189,7 +191,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/tvMHPulseReal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
@@ -238,24 +240,25 @@
                         android:textColor="@color/secondary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvMHPulse" />
 
-                    <ImageView
-                        android:id="@+id/imageView8"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="16dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/dg_home_wear"
                         app:layout_constraintBottom_toBottomOf="@+id/textView20"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView18"
-                        app:layout_constraintTop_toTopOf="@+id/textView18"
-                        app:srcCompat="@drawable/dg_home_wear" />
+                        app:layout_constraintStart_toEndOf="@+id/tvMHPulse"
+                        app:layout_constraintTop_toTopOf="@+id/tvMHPulse"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/thermo_anim" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvMHPulse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -270,7 +273,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvMHTemperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -295,7 +298,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 android:clickable="true"
-                app:cardBackgroundColor="@color/greyish"
+                app:cardBackgroundColor="@color/redish"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toStartOf="@+id/cvWearMHealth"
@@ -309,22 +312,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imageView8"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="24dp"
                         android:layout_marginEnd="16dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/cga_home_banner"
                         app:layout_constraintBottom_toBottomOf="@+id/textView20"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView18"
-                        app:layout_constraintTop_toTopOf="@+id/textView18"
-                        app:srcCompat="@drawable/cga_home_banner" />
+                        app:layout_constraintStart_toEndOf="@+id/tvMHPulse"
+                        app:layout_constraintTop_toTopOf="@+id/tvMHPulse"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/walking_anim" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tvMHPulse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -345,15 +349,15 @@
                         android:layout_marginStart="16dp"
                         android:alpha="0.6"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Play Now"
+                        android:text="Count"
                         android:textAlignment="textStart"
                         android:textColor="@color/secondary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvMHPulse" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/tvMHSteps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -366,14 +370,14 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView20" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
                 android:layout_width="wrap_content"
-                android:layout_height="230dp"
+                android:layout_height="250dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -392,10 +396,10 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="bpm"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                app:layout_constraintBottom_toBottomOf="@+id/tvMHPulseReal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView18" />
+                app:layout_constraintStart_toEndOf="@+id/tvMHPulseReal" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -403,12 +407,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:includeFontPadding="false"
-                android:text="Pulsu Rate"
+                android:text="Pulse Rate"
                 android:textColor="@color/secondary"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView15"
-                app:layout_constraintStart_toStartOf="@+id/textView18"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                app:layout_constraintStart_toStartOf="@+id/tvMHPulseReal"
+                app:layout_constraintTop_toBottomOf="@+id/tvMHPulseReal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

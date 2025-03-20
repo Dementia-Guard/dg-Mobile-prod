@@ -32,6 +32,9 @@
 <!--            android:name=".Activity.Home"-->
 <!--            android:exported="false" />-->
         <activity
+            android:name=".Activity.ConfigDevice"
+            android:exported="false" />
+        <activity
             android:name=".Activity.MonitorHealth"
             android:exported="false" />
         <activity

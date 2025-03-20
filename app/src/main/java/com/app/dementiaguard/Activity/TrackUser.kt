@@ -103,11 +103,11 @@ class TrackUser : AppCompatActivity(), OnMapReadyCallback {
     }
     private fun updateUI(data: MyData) {
         // Update UI components with the real-time data
-        findViewById<TextView>(R.id.temperatureTextView).text = "Temperature: ${data.temperature}"
-        findViewById<TextView>(R.id.latitudeTextView).text = "Latitude: ${data.location.latitude}"
-        findViewById<TextView>(R.id.longitudeTextView).text = "Longitude: ${data.location.longitude}"
-        findViewById<TextView>(R.id.pulseRateTextView).text = "Pulse Rate: ${data.pulseRate}"
-        findViewById<TextView>(R.id.stepCountTextView).text = "Step Count: ${data.stepCount}"
+        findViewById<TextView>(R.id.tvTrackUserTemperature).text = data.temperature
+        findViewById<TextView>(R.id.tvTrackUserLats).text = data.location.latitude
+        findViewById<TextView>(R.id.tvTrackUserLongs).text = data.location.longitude
+        findViewById<TextView>(R.id.tvTrackUserPulseRate).text = data.pulseRate.toString()
+        findViewById<TextView>(R.id.tvTrackUserStepCount).text = data.stepCount.toString()
 
         // Update map with the new location
         val latitude = data.location.latitude.toDoubleOrNull()
@@ -119,15 +119,15 @@ class TrackUser : AppCompatActivity(), OnMapReadyCallback {
 
 //            // Fetch place name using Geocoder
             val placeName = getPlaceName(latitude, longitude)
-            findViewById<TextView>(R.id.placeNameTextView).text = "Place Name: $placeName"
+            findViewById<TextView>(R.id.tvTrackUserAddressFull).text = placeName
             // Fetch place name components
             val addressComponents = getAddressComponents(latitude, longitude)
 
             // Display different parts of the address in the UI
-            findViewById<TextView>(R.id.cityTextView).text = "City: ${addressComponents.city}"
-            findViewById<TextView>(R.id.streetTextView).text = "Street: ${addressComponents.street}"
-            findViewById<TextView>(R.id.stateTextView).text = "State: ${addressComponents.state}"
-            findViewById<TextView>(R.id.countryTextView).text = "Country: ${addressComponents.country}"
+//            findViewById<TextView>(R.id.cityTextView).text = "City: ${addressComponents.city}"
+//            findViewById<TextView>(R.id.streetTextView).text = "Street: ${addressComponents.street}"
+            findViewById<TextView>(R.id.tvTrackUserState).text = addressComponents.state
+            findViewById<TextView>(R.id.tvTrackUserCountry).text = addressComponents.country
         }
     }
     private fun updateMapLocation(location: LatLng) {
