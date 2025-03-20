@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.app.dementiaguard.Activity.ConfigDevice
 import com.app.dementiaguard.Activity.MonitorHealth
 import com.app.dementiaguard.Activity.Sos
 import com.app.dementiaguard.Activity.TrackUser
@@ -20,6 +21,7 @@ class DeviceFragment : Fragment() {
     private lateinit var cvWearSos: MaterialCardView
     private lateinit var cvWearTravel: MaterialCardView
     private lateinit var cvWearMonitorHealth: MaterialCardView
+    private lateinit var cvWearConfDevice: MaterialCardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,7 @@ class DeviceFragment : Fragment() {
         cvWearSos = view.findViewById(R.id.cvWearSos)
         cvWearTravel = view.findViewById(R.id.cvWearTravel)
         cvWearMonitorHealth = view.findViewById(R.id.cvWearMonitorHealth)
+        cvWearConfDevice = view.findViewById(R.id.cvWearConfDevice)
 
         cvWearSos.setOnClickListener {
             startActivity(Intent(requireActivity(),Sos::class.java))
@@ -44,6 +47,9 @@ class DeviceFragment : Fragment() {
         }
         cvWearMonitorHealth.setOnClickListener {
             startActivity(Intent(requireActivity(),MonitorHealth::class.java))
+        }
+        cvWearConfDevice.setOnClickListener {
+            startActivity(Intent(requireActivity(),ConfigDevice::class.java))
         }
 
         return  view

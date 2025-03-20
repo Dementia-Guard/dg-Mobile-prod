@@ -129,7 +129,7 @@
         app:layout_constraintEnd_toStartOf="@+id/cvTrackPulse"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvTrackLong"
+        app:layout_constraintTop_toBottomOf="@+id/cvConfigDevStatus"
         app:strokeColor="@color/shimmerMain">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -348,11 +348,11 @@
         app:cardBackgroundColor="@color/greyish"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cvTrackLong"
+        app:layout_constraintBottom_toBottomOf="@+id/cvConfigDevStatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cvTrackLong"
-        app:layout_constraintTop_toTopOf="@+id/cvTrackLong"
+        app:layout_constraintStart_toEndOf="@+id/cvConfigDevStatus"
+        app:layout_constraintTop_toTopOf="@+id/cvConfigDevStatus"
         app:strokeColor="@color/shimmerMain">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -394,7 +394,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvTrackLong"
+        android:id="@+id/cvConfigDevStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
