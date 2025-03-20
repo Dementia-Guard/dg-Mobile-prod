@@ -19,7 +19,6 @@ lottie = "6.1.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
 googleMapsUtils = "3.8.2"
-lottie="6.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,7 +38,6 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 google-maps-utils = { group = "com.google.maps.android", name = "android-maps-utils", version.ref = "googleMapsUtils" }
-lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
