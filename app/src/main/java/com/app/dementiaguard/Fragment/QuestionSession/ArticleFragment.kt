@@ -3,12 +3,14 @@ package com.app.dementiaguard.Fragment.QuestionSession
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -25,6 +27,9 @@ class ArticleFragment : Fragment() {
     private var currentQuestionIndex: Int? = 0
     private var allQuestionAmount: Int? = 0
     private lateinit var txtTimer: TextView
+    private lateinit var editAnswer: TextInputEditText
+    private lateinit var btnNext: Button
+    private lateinit var progressBar: ProgressBar
 
     private var elapsedTime = 0L
     private val handler = Handler(Looper.getMainLooper())
@@ -51,19 +56,23 @@ class ArticleFragment : Fragment() {
         val btnFinishReading = view.findViewById<Button>(R.id.btnFinishReading)
         val layoutSubQuestion = view.findViewById<LinearLayout>(R.id.layoutSubQuestion)
         val txtSubQuestion = view.findViewById<TextView>(R.id.txtSubQuestion)
-        val editAnswer = view.findViewById<EditText>(R.id.editAnswer)
-        val btnNext = view.findViewById<Button>(R.id.btnArticleNext)
+        editAnswer = view.findViewById<TextInputEditText>(R.id.editAnswer)
+        btnNext = view.findViewById<Button>(R.id.btnArticleNext)
         val txtQuestionCount = view.findViewById<TextView>(R.id.txtQuestionCount)
         val txtQuestionAmount = view.findViewById<TextView>(R.id.TxtQuestionAmount)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
         txtTimer = view.findViewById(R.id.txtTimer)
 
-        txtQuestionCount.text = "Questions " + currentQuestionIndex.toString() + " /"
-        txtQuestionAmount.text = allQuestionAmount.toString()
+
+        txtQuestionCount.text = "Question $currentQuestionIndex "
+        txtQuestionAmount.text = "out of $allQuestionAmount"
 
         txtTitle.text = question.title
         txtBody.text = question.article
         layoutSubQuestion.visibility = View.GONE
+
+        updateProgressBar()
 
         startElapsedTimeTimer()
 
@@ -76,11 +85,31 @@ class ArticleFragment : Fragment() {
             txtSubQuestion.text = question.question
         }
 
+        editAnswer.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == KeyEvent.ACTION_DOWN || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+                btnNext.performClick()  // Trigger the Next button click
+                true
+            } else {
+                false
+            }
+        }
+
         btnNext.setOnClickListener {
             (activity as QuestionSession).nextQuestion()
         }
 
         return view
+    }
+
+    private fun updateProgressBar() {
+        val totalQuestions = allQuestionAmount ?: 0
+        val currentIndex = currentQuestionIndex ?: 0
+        if (totalQuestions > 0) {
+            val progress = (currentIndex.toFloat() / totalQuestions.toFloat() * 100).toInt()
+            progressBar.progress = progress
+        } else {
+            progressBar.progress = 0
+        }
     }
 
     private fun startElapsedTimeTimer() {
@@ -111,19 +140,7 @@ class ArticleFragment : Fragment() {
         val radioGroup = view?.findViewById<RadioGroup>(R.id.radioGroup)
         val editAnswer = view?.findViewById<TextInputEditText>(R.id.editAnswer)
 
-        return if (difficultyLevel == 0) {
-            // For multiple-choice (radio buttons)
-            val selectedRadioButtonId = radioGroup?.checkedRadioButtonId
-            if (selectedRadioButtonId != null && selectedRadioButtonId != -1) {
-                val selectedRadioButton = view?.findViewById<RadioButton>(selectedRadioButtonId)
-                selectedRadioButton?.text?.toString()
-            } else {
-                null // No selection made
-            }
-        } else {
-            // For text input
-            editAnswer?.text?.toString()?.trim().takeIf { it?.isNotEmpty() ?: false }
-        }
+        return editAnswer?.text?.toString()?.trim().takeIf { it?.isNotEmpty() ?: false }
     }
 
     companion object {

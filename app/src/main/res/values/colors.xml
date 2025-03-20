@@ -44,5 +44,6 @@
     <color name="greenish_text">#00A000</color>
     <color name="redish_text">#DB3030</color>
     <color name="purplish_text">#6A1AFF</color>
+    <color name="animation_green">#00e55c</color>
 
 </resources>

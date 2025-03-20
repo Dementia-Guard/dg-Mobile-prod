@@ -17,6 +17,7 @@ class LoadingFragment : Fragment() {
 
     private lateinit var loading: TextView
     private var loadingJob: Job? = null  // To manage the coroutine
+    private var isGenerating: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,11 +35,25 @@ class LoadingFragment : Fragment() {
 
     private fun startLoadingTextCycle() {
         // Define the text array to cycle through
-        val loadingTexts = arrayOf(
-            "Your Questioning Session\nis being generated.",
+        val loadingTextsGenerate = arrayOf(
             "Please wait...",
-            "This can be take some time."
+            "Questioning Session is being generated...",
+            "This can be take some time..."
         )
+
+        val loadingTextsEvaluate = arrayOf(
+            "Please wait...",
+            "Answers are being evaluated...",
+            "This can be take some time..."
+        )
+
+        var loadingTexts: Array<String>
+
+        if(isGenerating){
+            loadingTexts = loadingTextsGenerate
+        } else{
+            loadingTexts = loadingTextsEvaluate
+        }
 
         // Launch a coroutine in the fragment's lifecycle scope
         loadingJob = lifecycleScope.launch {
@@ -72,6 +87,8 @@ class LoadingFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = LoadingFragment()
+        fun newInstance(isGenerating: Boolean) = LoadingFragment().apply {
+            this.isGenerating = isGenerating
+        }
     }
 }

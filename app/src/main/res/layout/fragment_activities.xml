@@ -157,7 +157,7 @@
                     app:cardBackgroundColor="@color/blueish"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:layout_constraintEnd_toStartOf="@+id/ca_empty_card"
+                    app:layout_constraintEnd_toStartOf="@+id/ca_cdl_card"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintHorizontal_weight="2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +216,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/ca_empty_card"
+                    android:id="@+id/ca_cdl_card"
                     android:layout_width="0dp"
                     android:layout_height="260dp"
                     android:layout_marginEnd="12dp"

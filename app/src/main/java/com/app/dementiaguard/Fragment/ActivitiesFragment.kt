@@ -13,6 +13,7 @@ import com.app.dementiaguard.Activity.QuestionSession
 import com.app.dementiaguard.Model.UserDetailsRequest
 import com.app.dementiaguard.R
 import com.app.dementiaguard.Service.RetrofitService
+import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -29,12 +30,19 @@ class ActivitiesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_activities, container, false)
 
         val startCard: CardView = view.findViewById(R.id.ca_start_card)
+        val currentDifficultyLevelCard = view.findViewById<MaterialCardView>(R.id.ca_cdl_card)
         currentDifficultyLevel = view.findViewById(R.id.txtCurrrentDifficultyLevel)
 
         startCard.setOnClickListener {
             val intent = Intent(activity, QuestionSession::class.java)
             startActivity(intent)
         }
+
+        currentDifficultyLevelCard.setOnClickListener {
+            val popupDialog = ConfirmationPopupDialog("Current Difficulty Level", "This is your current difficulty level and your questioning sessions are generated considering this.")
+            popupDialog.show(parentFragmentManager, "CustomPopupDialog")
+        }
+
 
         fetchUserDetails()
 

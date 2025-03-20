@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.app.dementiaguard.Fragment.ConfirmationPopupDialog
+import com.app.dementiaguard.Fragment.CustomPopupDialog
 import com.app.dementiaguard.Fragment.QuestionSession.*
 import com.app.dementiaguard.Model.EvaluationRequest
 import com.app.dementiaguard.Model.EvaluationResponse
@@ -41,15 +43,25 @@ class QuestionSession : AppCompatActivity() {
         questionSessionInfo = findViewById(R.id.cvNotiFb)
 
         // Show loading fragment initially
-        showLoadingFragment()
+        showLoadingGenerateFragment()
 
         // Fetch session data
         fetchSessionData()
     }
 
-    private fun showLoadingFragment() {
+    private fun showLoadingGenerateFragment() {
+        questionSessionTitle.visibility = View.GONE
+        questionSessionInfo.visibility = View.GONE
         supportFragmentManager.beginTransaction()
-            .replace(R.id.questionSessionFragmentContainer, LoadingFragment.newInstance())
+            .replace(R.id.questionSessionFragmentContainer, LoadingFragment.newInstance(isGenerating = true))
+            .commit()
+    }
+
+    private fun showLoadingEvaluateFragment() {
+        questionSessionTitle.visibility = View.GONE
+        questionSessionInfo.visibility = View.GONE
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.questionSessionFragmentContainer, LoadingFragment.newInstance(isGenerating = false))
             .commit()
     }
 
@@ -97,15 +109,19 @@ class QuestionSession : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Exit Session")
-            .setMessage("Do you want to exit from the question session?")
-            .setPositiveButton("Yes") { _, _ -> finish() }
-            .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-            .show()
+        val popupDialog = CustomPopupDialog(
+            "Exit Session",
+            "Do you want to exit from the question session?"
+        ) {
+            finish() // Closes the activity when "Yes" is pressed
+        }
+
+        popupDialog.show(supportFragmentManager, "CustomPopupDialog")
     }
 
     private fun loadQuestionFragment() {
+        questionSessionTitle.visibility = View.VISIBLE
+        questionSessionInfo.visibility = View.VISIBLE
         val question = questionList[currentQuestionIndex]
         val difficultyLevel = sessionResponse.difficulty_level.toInt()
         val totalQuestions = questionList.size
@@ -142,7 +158,7 @@ class QuestionSession : AppCompatActivity() {
         println("Sending to evaluate-session: $answersJson")
 
         // Show loading fragment while evaluating
-        showLoadingFragment()
+        showLoadingEvaluateFragment()
 
         CoroutineScope(Dispatchers.IO).launch {
             val apiService = retrofitService.createApiService()
@@ -202,11 +218,12 @@ class QuestionSession : AppCompatActivity() {
 
         // If not the initial MemoryRecall phase, require an answer
         if (!isInitialMemoryRecall && (userAnswer.isNullOrEmpty() || userAnswer == "")) {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Information")
-                .setMessage("Please provide an answer")
-                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-                .show()
+
+            val popupDialog = ConfirmationPopupDialog(
+                "Information",
+                "Please provide an answer to navigate next one"
+            )
+            popupDialog.show(supportFragmentManager, "CustomPopupDialog")
         } else {
             // Store the time and answer
             timeSpentList.add(elapsedTime)

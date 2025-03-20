@@ -3,12 +3,14 @@ package com.app.dementiaguard.Fragment.QuestionSession
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -27,6 +29,9 @@ class BackwardFragment : Fragment() {
     private var currentQuestionIndex: Int? = 0
     private var allQuestionAmount: Int? = 0
     private lateinit var txtTimer: TextView
+    private lateinit var editAnswer: TextInputEditText
+    private lateinit var btnNext: Button
+    private lateinit var progressBar: ProgressBar
 
     private var elapsedTime = 0L
     private val handler = Handler(Looper.getMainLooper())
@@ -53,13 +58,17 @@ class BackwardFragment : Fragment() {
         val txtQuestionAmount = view.findViewById<TextView>(R.id.TxtQuestionAmount)
         val txtQuestion = view.findViewById<TextView>(R.id.txtQuestion)
         val layoutInputs = view.findViewById<LinearLayout>(R.id.layoutInputs)
-        val btnNext = view.findViewById<Button>(R.id.btnBackwardNext)
+        btnNext = view.findViewById<Button>(R.id.btnBackwardNext)
         txtTimer = view.findViewById(R.id.txtTimer)
+        editAnswer = view.findViewById<TextInputEditText>(R.id.editAnswer)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
-        txtQuestionCount.text = "Questions " + currentQuestionIndex.toString() + " /"
-        txtQuestionAmount.text = allQuestionAmount.toString()
+        txtQuestionCount.text = "Question $currentQuestionIndex "
+        txtQuestionAmount.text = "out of $allQuestionAmount"
 
         txtQuestion.text = question.question
+
+        updateProgressBar()
 
         question.possible_answers?.forEachIndexed { index, _ ->
             val textInputLayout = TextInputLayout(requireContext()).apply {
@@ -97,8 +106,14 @@ class BackwardFragment : Fragment() {
 
         }
 
-
-
+        editAnswer.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == KeyEvent.ACTION_DOWN || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+                btnNext.performClick()  // Trigger the Next button click
+                true
+            } else {
+                false
+            }
+        }
 
         startElapsedTimeTimer()
 
@@ -107,6 +122,17 @@ class BackwardFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun updateProgressBar() {
+        val totalQuestions = allQuestionAmount ?: 0
+        val currentIndex = currentQuestionIndex ?: 0
+        if (totalQuestions > 0) {
+            val progress = (currentIndex.toFloat() / totalQuestions.toFloat() * 100).toInt()
+            progressBar.progress = progress
+        } else {
+            progressBar.progress = 0
+        }
     }
 
     private fun startElapsedTimeTimer() {
@@ -134,22 +160,7 @@ class BackwardFragment : Fragment() {
     }
 
     fun getUserAnswer(): String? {
-        val radioGroup = view?.findViewById<RadioGroup>(R.id.radioGroup)
-        val editAnswer = view?.findViewById<TextInputEditText>(R.id.editAnswer)
-
-        return if (difficultyLevel == 0) {
-            // For multiple-choice (radio buttons)
-            val selectedRadioButtonId = radioGroup?.checkedRadioButtonId
-            if (selectedRadioButtonId != null && selectedRadioButtonId != -1) {
-                val selectedRadioButton = view?.findViewById<RadioButton>(selectedRadioButtonId)
-                selectedRadioButton?.text?.toString()
-            } else {
-                null // No selection made
-            }
-        } else {
-            // For text input
-            editAnswer?.text?.toString()?.trim().takeIf { it?.isNotEmpty() ?: false }
-        }
+        return editAnswer?.text?.toString()?.trim().takeIf { it?.isNotEmpty() ?: false }
     }
 
     companion object {

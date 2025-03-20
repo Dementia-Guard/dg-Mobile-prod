@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,10 @@ class ObjectRecallFragment : Fragment() {
     private lateinit var txtTimer: TextView
     private lateinit var objectRecallImage: ImageView
     private lateinit var imageLoadingProgress: ProgressBar
+    private lateinit var progressBar: ProgressBar
+
+    private lateinit var editAnswer: TextInputEditText
+    private lateinit var btnNext: Button
 
     private var elapsedTime = 0L
     private val handler = Handler(Looper.getMainLooper())
@@ -68,18 +73,21 @@ class ObjectRecallFragment : Fragment() {
         val txtQuestionCount = view.findViewById<TextView>(R.id.txtQuestionCount)
         val txtQuestionAmount = view.findViewById<TextView>(R.id.TxtQuestionAmount)
         val txtQuestion = view.findViewById<TextView>(R.id.txtQuestion)
-        val btnNext = view.findViewById<Button>(R.id.btnObjectRecallNext)
+        btnNext = view.findViewById<Button>(R.id.btnObjectRecallNext)
         val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
-        val editAnswer = view.findViewById<TextInputEditText>(R.id.editAnswer)
+        editAnswer = view.findViewById<TextInputEditText>(R.id.editAnswer)
         val editAnswerLayout = view.findViewById<TextInputLayout>(R.id.editAnswerLayout)
         txtTimer = view.findViewById(R.id.txtTimer)
         objectRecallImage = view.findViewById(R.id.object_recall_image)
         imageLoadingProgress = view.findViewById(R.id.imageLoadingProgress)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
-        txtQuestionCount.text = "Questions $currentQuestionIndex /"
-        txtQuestionAmount.text = allQuestionAmount.toString()
+        txtQuestionCount.text = "Question $currentQuestionIndex "
+        txtQuestionAmount.text = "out of $allQuestionAmount"
 
-        if (difficultyLevel == 0) {
+        updateProgressBar()
+
+        if (difficultyLevel == 0 || difficultyLevel == 1 || difficultyLevel == 2) {
             txtQuestion.text = question.question + " (Select an answer)"
             editAnswer.visibility = View.GONE
             radioGroup.visibility = View.VISIBLE
@@ -104,7 +112,7 @@ class ObjectRecallFragment : Fragment() {
                 radioGroup.addView(radioButton)
             }
         } else {
-            txtQuestion.text = question.link_of_img
+            txtQuestion.text = question.question
             radioGroup.visibility = View.GONE
             editAnswer.visibility = View.VISIBLE
             editAnswerLayout.visibility = View.VISIBLE
@@ -119,6 +127,15 @@ class ObjectRecallFragment : Fragment() {
             Glide.with(this)
                 .load(R.drawable.home_logo)
                 .into(objectRecallImage)
+        }
+
+        editAnswer.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == KeyEvent.ACTION_DOWN || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+                btnNext.performClick()  // Trigger the Next button click
+                true
+            } else {
+                false
+            }
         }
 
         startElapsedTimeTimer()
@@ -145,7 +162,8 @@ class ObjectRecallFragment : Fragment() {
                 // Select a random image URL from the hits array
                 val randomIndex = Random.nextInt(hitsArray.length())
                 val randomHit = hitsArray.getJSONObject(randomIndex)
-                val imageUrl = randomHit.getString("webformatURL") // or "largeImageURL" for higher quality
+                val firstHit = hitsArray.getJSONObject(0)
+                val imageUrl = firstHit.getString("webformatURL") // or "largeImageURL" for higher quality
 
                 // Load the image into ImageView on the main thread
                 withContext(Dispatchers.Main) {
@@ -192,6 +210,17 @@ class ObjectRecallFragment : Fragment() {
         }
     }
 
+    private fun updateProgressBar() {
+        val totalQuestions = allQuestionAmount ?: 0
+        val currentIndex = currentQuestionIndex ?: 0
+        if (totalQuestions > 0) {
+            val progress = (currentIndex.toFloat() / totalQuestions.toFloat() * 100).toInt()
+            progressBar.progress = progress
+        } else {
+            progressBar.progress = 0
+        }
+    }
+
     private fun startElapsedTimeTimer() {
         elapsedTime = 0 // Reset time to 0
         handler.post(timerRunnable) // Start the timer
@@ -216,7 +245,7 @@ class ObjectRecallFragment : Fragment() {
         val radioGroup = view?.findViewById<RadioGroup>(R.id.radioGroup)
         val editAnswer = view?.findViewById<TextInputEditText>(R.id.editAnswer)
 
-        return if (difficultyLevel == 0) {
+        return if (difficultyLevel == 0 || difficultyLevel == 1 || difficultyLevel == 2) {
             // For multiple-choice (radio buttons)
             val selectedRadioButtonId = radioGroup?.checkedRadioButtonId
             if (selectedRadioButtonId != null && selectedRadioButtonId != -1) {

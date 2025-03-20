@@ -3,10 +3,12 @@ package com.app.dementiaguard.Fragment.QuestionSession
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.app.dementiaguard.Activity.QuestionSession
@@ -21,11 +23,13 @@ class MemoryRecallFragment : Fragment() {
     private var difficultyLevel: Int? = 0
     private var currentQuestionIndex: Int? = 0
     private var allQuestionAmount: Int? = 0
-    private var isRecallPhase: Boolean = false // New flag
+    private var isRecallPhase: Boolean = false
     private lateinit var txtTimer: TextView
     private lateinit var editAnswer: TextInputEditText
     private lateinit var editAnswerLayout: TextInputLayout
     private lateinit var txtSubQuestion: TextView
+    private lateinit var btnNext: Button
+    private lateinit var progressBar: ProgressBar
 
     private var elapsedTime = 0L
     private val handler = Handler(Looper.getMainLooper())
@@ -54,18 +58,26 @@ class MemoryRecallFragment : Fragment() {
         txtSubQuestion = view.findViewById<TextView>(R.id.txtSubQuestion)
         editAnswer = view.findViewById<TextInputEditText>(R.id.editAnswer)
         editAnswerLayout = view.findViewById<TextInputLayout>(R.id.tilUserAnswer)
-        val btnNext = view.findViewById<Button>(R.id.btnObjectRecallNext)
+        btnNext = view.findViewById<Button>(R.id.btnObjectRecallNext)
         txtTimer = view.findViewById(R.id.txtTimer)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
-        txtQuestionCount.text = "Questions $currentQuestionIndex /"
-        txtQuestionAmount.text = allQuestionAmount.toString()
+        // Set up question count and amount
+        txtQuestionCount.text = "Question $currentQuestionIndex "
+        txtQuestionAmount.text = "out of $allQuestionAmount"
         txtQuestion.text = question.question
         txtWords.text = question.words?.joinToString(", ") ?: ""
 
+        // Update progress bar
+        updateProgressBar()
+
         // Show sub-question and EditText only in recall phase
         if (isRecallPhase) {
+            progressBar.visibility = View.GONE
             txtQuestion.visibility = View.GONE
             txtWords.visibility = View.GONE
+            txtQuestionCount.text = "Question $currentQuestionIndex "
+            txtQuestionAmount.text = "Recalling"
             txtSubQuestion.visibility = View.VISIBLE
             editAnswerLayout.visibility = View.VISIBLE
             editAnswer.visibility = View.VISIBLE
@@ -75,6 +87,15 @@ class MemoryRecallFragment : Fragment() {
             editAnswer.visibility = View.GONE
         }
 
+        editAnswer.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == KeyEvent.ACTION_DOWN || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+                btnNext.performClick()
+                true
+            } else {
+                false
+            }
+        }
+
         startElapsedTimeTimer()
 
         btnNext.setOnClickListener {
@@ -82,6 +103,17 @@ class MemoryRecallFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun updateProgressBar() {
+        val totalQuestions = allQuestionAmount ?: 0
+        val currentIndex = currentQuestionIndex ?: 0
+        if (totalQuestions > 0) {
+            val progress = (currentIndex.toFloat() / totalQuestions.toFloat() * 100).toInt()
+            progressBar.progress = progress
+        } else {
+            progressBar.progress = 0
+        }
     }
 
     private fun startElapsedTimeTimer() {
@@ -100,15 +132,13 @@ class MemoryRecallFragment : Fragment() {
         handler.removeCallbacks(timerRunnable)
     }
 
-    fun getElapsedTime(): Long {
-        return elapsedTime
-    }
+    fun getElapsedTime(): Long = elapsedTime
 
     fun getUserAnswer(): String? {
         return if (isRecallPhase) {
             editAnswer.text?.toString()?.trim().takeIf { it?.isNotEmpty() ?: false }
         } else {
-            null // No answer required during initial phase
+            null
         }
     }
 

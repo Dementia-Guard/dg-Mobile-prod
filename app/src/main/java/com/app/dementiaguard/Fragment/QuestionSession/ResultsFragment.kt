@@ -61,7 +61,8 @@ class ResultsFragment : Fragment() {
         txtResults.text = "Session Results"
         txtResults.setTypeface(null, Typeface.BOLD)
         txtResults.textSize = 32f
-        txtTime.text = "Avg Time: $avgTime seconds\nTotal Time: $fullTime ms"
+        txtTime.text = "Avg Time: %.2f seconds\nTotal Time: %.2f ms".format(avgTime, fullTime / 1000.0)
+
 
         // Populate question numbers and evaluations (using dummy logic for now since evaluations are ignored)
         evaluations.forEachIndexed { index, evaluation ->
