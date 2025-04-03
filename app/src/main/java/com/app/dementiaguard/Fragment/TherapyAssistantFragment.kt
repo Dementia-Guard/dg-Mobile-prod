@@ -25,6 +25,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.app.dementiaguard.R
 import com.app.dementiaguard.Adapter.ChatMessageAdapter
 import com.app.dementiaguard.Api.ChatApiService
@@ -67,9 +68,9 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
     private var isHintDisplayed = false
     
     private lateinit var talkingAnimationContainer: FrameLayout
-    private lateinit var talkingAnimation: View
+    private lateinit var talkingAnimation: LottieAnimationView
     private lateinit var listeningAnimationContainer: FrameLayout
-    private lateinit var listeningAnimation: View
+    private lateinit var listeningAnimation: LottieAnimationView
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,12 +142,14 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 activity?.runOnUiThread {
                     btnSpeak.visibility = View.GONE
                     talkingAnimationContainer.visibility = View.VISIBLE
+                    talkingAnimation.playAnimation()
                 }
             }
             
             override fun onDone(utteranceId: String?) {
                 activity?.runOnUiThread {
                     talkingAnimationContainer.visibility = View.GONE
+                    talkingAnimation.pauseAnimation()
                     btnSpeak.visibility = View.VISIBLE
                     btnSpeak.isEnabled = true
                 }
@@ -155,6 +158,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
             override fun onError(utteranceId: String?) {
                 activity?.runOnUiThread {
                     talkingAnimationContainer.visibility = View.GONE
+                    talkingAnimation.pauseAnimation()
                     btnSpeak.visibility = View.VISIBLE
                     btnSpeak.isEnabled = true
                     Toast.makeText(context, "TTS Error", Toast.LENGTH_SHORT).show()
@@ -391,6 +395,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 override fun onReadyForSpeech(params: Bundle?) {
                     btnSpeak.visibility = View.GONE
                     listeningAnimationContainer.visibility = View.VISIBLE
+                    listeningAnimation.playAnimation()
                 }
                 
                 override fun onBeginningOfSpeech() {}
@@ -401,6 +406,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 
                 override fun onEndOfSpeech() {
                     listeningAnimationContainer.visibility = View.GONE
+                    listeningAnimation.pauseAnimation()
                     btnSpeak.visibility = View.VISIBLE
                     btnSpeak.text = "Speak"
                     btnSpeak.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellowish_text))
@@ -408,6 +414,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 
                 override fun onError(error: Int) {
                     listeningAnimationContainer.visibility = View.GONE
+                    listeningAnimation.pauseAnimation()
                     btnSpeak.visibility = View.VISIBLE
                     btnSpeak.text = "Speak"
                     btnSpeak.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellowish_text))
@@ -430,6 +437,7 @@ class TherapyAssistantFragment : Fragment(), TextToSpeech.OnInitListener {
                 
                 override fun onResults(results: Bundle?) {
                     listeningAnimationContainer.visibility = View.GONE
+                    listeningAnimation.pauseAnimation()
                     btnSpeak.visibility = View.VISIBLE
                     btnSpeak.text = "Speak"
                     btnSpeak.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.yellowish_text))

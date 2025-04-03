@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.pow
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.8.185:8080/"
+    private const val BASE_URL = "https://dg-therapy-conversation-service-7az7elfqqa-as.a.run.app/"
     private const val TIMEOUT_SECONDS = 30L
     private const val MAX_RETRIES = 3
 

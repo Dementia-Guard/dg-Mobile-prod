@@ -95,11 +95,13 @@
             android:layout_height="wrap_content"
             android:visibility="gone">
 
-            <pl.droidsonroids.gif.GifImageView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/listeningAnimation"
                 android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:src="@drawable/listening_animation" />
+                android:layout_height="120dp"
+                app:lottie_rawRes="@raw/listening_animation"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="true" />
         </FrameLayout>
 
         <FrameLayout
@@ -108,11 +110,13 @@
             android:layout_height="wrap_content"
             android:visibility="gone">
 
-            <pl.droidsonroids.gif.GifImageView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/talkingAnimation"
                 android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:src="@drawable/talking_animation" />
+                android:layout_height="120dp"
+                app:lottie_rawRes="@raw/talking_animation"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="true" />
         </FrameLayout>
     </FrameLayout>
 

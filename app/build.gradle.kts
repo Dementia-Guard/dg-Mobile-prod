@@ -52,8 +52,8 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.logging.interceptor)
 
-    // GIF animation library
-    implementation(libs.android.gif.drawable)
+    // Lottie animation library
+    implementation("com.airbnb.android:lottie:6.4.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
