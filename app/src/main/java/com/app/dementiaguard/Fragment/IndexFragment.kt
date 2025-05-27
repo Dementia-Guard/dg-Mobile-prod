@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.app.dementiaguard.R
 import com.app.dementiaguard.Utils.FormCompletionManager
 import com.google.android.material.card.MaterialCardView
-import com.app.dementiaguard.Fragment.TherapyAssistantFragment
 
 class IndexFragment : Fragment() {
     override fun onCreateView(
@@ -17,14 +16,27 @@ class IndexFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_index, container, false)
 
-        val cvIndexGemmaAssist = view.findViewById<MaterialCardView>(R.id.cvWearConfDevice)
+        // Find the MaterialCardViews by their IDs
+        val cvTherapyAssist = view.findViewById<MaterialCardView>(R.id.therapyAssist)
+        val cvActivities = view.findViewById<MaterialCardView>(R.id.caIndexCard)
+        val cvDevice = view.findViewById<MaterialCardView>(R.id.cvWearMonitorHealth)
 
-        cvIndexGemmaAssist.setOnClickListener {
+        // Set click listener for therapyAssist card
+        cvTherapyAssist.setOnClickListener {
             val formCompletionManager = FormCompletionManager.getInstance(requireContext())
-
             if (formCompletionManager.areAllFormsCompleted()) {
-                replaceFrag(TherapyAssistantFragment())
+                replaceFrag(AssistantFragment())
             }
+        }
+
+        // Set click listener for caIndexCard
+        cvActivities.setOnClickListener {
+            replaceFrag(ActivitiesFragment())
+        }
+
+        // Set click listener for cvWearMonitorHealth
+        cvDevice.setOnClickListener {
+            replaceFrag(DeviceFragment())
         }
 
         return view
@@ -33,7 +45,6 @@ class IndexFragment : Fragment() {
     private fun replaceFrag(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }

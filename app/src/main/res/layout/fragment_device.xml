@@ -225,7 +225,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="1.4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvWearSos"
+                    app:layout_constraintTop_toBottomOf="@+id/caIndexCard"
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -288,12 +288,12 @@
                     app:cardBackgroundColor="@color/yellow_card"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/cvWearSos"
+                    app:layout_constraintBottom_toBottomOf="@+id/caIndexCard"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="1.4"
-                    app:layout_constraintStart_toEndOf="@+id/cvWearSos"
-                    app:layout_constraintTop_toTopOf="@+id/cvWearSos"
+                    app:layout_constraintStart_toEndOf="@+id/caIndexCard"
+                    app:layout_constraintTop_toTopOf="@+id/caIndexCard"
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -348,7 +348,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvWearSos"
+                    android:id="@+id/caIndexCard"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="12dp"
@@ -361,7 +361,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvWearConfDevice"
+                    app:layout_constraintTop_toBottomOf="@+id/therapyAssist"
                     app:strokeColor="@color/shimmerMain">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -413,7 +413,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvWearConfDevice"
+                    android:id="@+id/therapyAssist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"

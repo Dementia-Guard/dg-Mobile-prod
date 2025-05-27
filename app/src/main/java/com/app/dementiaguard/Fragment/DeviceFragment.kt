@@ -2,12 +2,10 @@ package com.app.dementiaguard.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.CardView
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.app.dementiaguard.Activity.ConfigDevice
 import com.app.dementiaguard.Activity.MonitorHealth
 import com.app.dementiaguard.Activity.Sos
@@ -31,10 +29,10 @@ class DeviceFragment : Fragment() {
         var view =  inflater.inflate(R.layout.fragment_device, container, false)
 
         cvWearTrack = view.findViewById(R.id.cvWearTrack)
-        cvWearSos = view.findViewById(R.id.cvWearSos)
+        cvWearSos = view.findViewById(R.id.caIndexCard)
         cvWearTravel = view.findViewById(R.id.cvWearTravel)
         cvWearMonitorHealth = view.findViewById(R.id.cvWearMonitorHealth)
-        cvWearConfDevice = view.findViewById(R.id.cvWearConfDevice)
+        cvWearConfDevice = view.findViewById(R.id.therapyAssist)
 
         cvWearSos.setOnClickListener {
             startActivity(Intent(requireActivity(),Sos::class.java))
