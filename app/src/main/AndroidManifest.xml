@@ -45,9 +45,6 @@
             android:name=".Activity.Sos"
             android:exported="false" />
         <activity
-            android:name=".Activity.SoS"
-            android:exported="false" />
-        <activity
             android:name=".Activity.TestActivity"
             android:exported="false" />
 

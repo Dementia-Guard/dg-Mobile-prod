@@ -243,7 +243,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/cvWearSos" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/txtCASeeMore"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
