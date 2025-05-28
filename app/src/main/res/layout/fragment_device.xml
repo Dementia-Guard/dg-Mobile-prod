@@ -137,7 +137,7 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_semibold"
                             android:lineSpacingExtra="-5sp"
-                            android:text="Recent\nActivities"
+                            android:text="Past\nActivities"
                             android:textAlignment="textStart"
                             android:textColor="@color/redish_text"
                             android:textSize="24sp"

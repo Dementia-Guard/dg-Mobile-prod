@@ -24,14 +24,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.QuestionSession"
+            android:name=".Activity.RecentHealth"
             android:exported="false"/>
-        <!-- <activity -->
-        <!-- android:name=".Activity.Home" -->
-        <!-- android:exported="false" /> -->
-<!--        <activity-->
-<!--            android:name=".Activity.Home"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Activity.QuestionSession"
+            android:exported="false" />
         <activity
             android:name=".Activity.ConfigDevice"
             android:exported="false" />
@@ -45,9 +42,6 @@
             android:name=".Activity.Sos"
             android:exported="false" />
         <activity
-            android:name=".Activity.SoS"
-            android:exported="false" />
-        <activity
             android:name=".Activity.TestActivity"
             android:exported="false" />
 
@@ -57,9 +51,7 @@
 
         <activity
             android:name=".Activity.TrackUser"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".Activity.Home" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".Activity.Home"
             android:exported="true">
