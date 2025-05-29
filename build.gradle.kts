@@ -12,5 +12,5 @@ if (secretsFile.exists()) {
 
 // Make properties available to all modules
 ext {
-    set("MAPS_API_KEY", secretsProperties.getProperty("MAPS_API_KEY", ""))
+    set("MAPS_API_KEY", secretsProperties.getProperty("MAPS_API_KEY", "AIzaSyAeFFkDPKmI-9_1F7nuHC-fAIAeMkJ3yJ4"))
 }
